@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Inicio</title>
+    <link rel="stylesheet" type="text/css" href="css/styles.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+  </head>
+  <body>
+    
+    <div class="container d-flex flex-wrap justify-content-center mt-3">
+      <nav class="col-md-10 tab-link mb-5">
+          <li><a href="/box">Palcos</a></li>
+          <li><a href="/client">Clientes</a></li>
+          <li><a href="/category">Categorias</a></li>
+          <li><a href="/message">Mensajes</a></li>
+          <li><a class="link-hover" href="/reservation">Reservaciones</a></li>
+          <li><a href="/admin">Admin</a></li>
+      </nav>
+      <div class="row col-md-11">
+        <div class="text-center">
+          <h1>Reservaciones</h1>
+        </div>
+      </div>
+      <div class="row col-md-11">
+        <div class="mb-2">
+          <button type="submit" class="btn btn-success" id="btnCrear" data-bs-toggle="modal" data-bs-target="#modalReservaCreate" data-bs-whatever="@mdo">Crear</button>
+        </div>
+        <table class="table table-striped table-hover table-bordered border-dark text-center" id="reservaTable">
+          <thead class="table-dark">
+            <tr>
+              <th scope="col">Id</th>
+              <th scope="col">Fecha de inicio</th>
+              <th scope="col">Fecha de entrega</th>
+              <th scope="col">Estado</th>
+              <th scope="col">Palco</th>
+              <th scope="col">Cliente</th>
+              <th scope="col">Acciones</th>
+            </tr>
+          </thead>
+        </table>    
+      </div>
+    </div>
+
+    <div class="modal fade" id="modalReservaCreate" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Crear Reservación</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+
+          <div class="modal-body">
+            <form>
+              <div class="mb-1">
+                <label for="recipient-name" class="col-form-label">Fecha de inicio:</label>
+                <input type="date" class="form-control" id="startDate">
+              </div>
+              <div class="mb-1">
+                <label for="recipient-name" class="col-form-label">Fecha de entrega:</label>
+                <input type="date" class="form-control" id="devolutionDate">
+              </div>
+              <div class="mb-1">
+                <label for="recipient-name" class="col-form-label">Palco:</label>
+                <select class="form-select" id="palcoIdSelect">
+                </select>
+              </div>
+              <div class="mb-1">
+                <label for="recipient-name" class="col-form-label">Cliente:</label>
+                <select class="form-select" id="clientIdSelect">
+                </select>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+            <button type="button" class="btn btn-primary" id="btnAgregarReserva">Crear</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal fade" id="modalReservaEdit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Editar Reserva</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+
+          <div class="modal-body">
+            <form>
+              <div class="mb-1">
+                <label for="recipient-name" class="col-form-label">Id:</label>
+                <input type="text" class="form-control" id="idUpdate" disabled>
+              </div>
+              <div class="mb-1">
+                <label for="recipient-name" class="col-form-label">Palco:</label>
+                <input type="text" class="form-control" id="idPalcoUpdate" disabled>
+              </div>
+              <div class="mb-1">
+                <label for="recipient-name" class="col-form-label">Cliente:</label>
+                <input type="text" class="form-control" id="idClientUpdate" disabled>
+              </div>
+              <div class="mb-1">
+                <label for="recipient-name" class="col-form-label">Fecha de inicio:</label>
+                <input type="date" class="form-control" id="startDateUpdate">
+              </div>
+              <div class="mb-1">
+                <label for="recipient-name" class="col-form-label">Fecha de entrega:</label>
+                <input type="date" class="form-control" id="devolutionDateUpdate">
+              </div>
+              <div class="mb-1">
+                <label for="recipient-name" class="col-form-label">Estado:</label>
+                  <select class="form-select" id="IdSelect">
+                    <select class="form-select" id="IdSelect">
+                      <option value="created">Programado</option>
+                      <option value="cancelled">Cancelado</option>
+                      <option value="completed">Realizado</option>
+                    </select>
+                  </select>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+            <button type="button" class="btn btn-primary" id="btnActualizarReserva">Actualizar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    
+    <script src="js/reservation.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+  </body>
+</html>
